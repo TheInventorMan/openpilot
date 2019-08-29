@@ -197,6 +197,16 @@ class CarInterface(object):
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.6], [0.1]]
       ret.lateralTuning.pid.kf = 0.00007818594
 
+    elif candidate == CAR.LEXUS_ESH:
+      stop_and_go = True
+      ret.safetyParam = 73
+      ret.wheelbase = 2.8702
+      ret.steerRatio = 16.0 # not optimized
+      tire_stiffness_factor = 0.444  # not optimized yet
+      ret.mass = 3704. * CV.LB_TO_KG + STD_CARGO_KG
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.6], [0.1]]
+      ret.lateralTuning.pid.kf = 0.00007818594
+
     elif candidate == CAR.SIENNA:
       stop_and_go = True
       ret.safetyParam = 73

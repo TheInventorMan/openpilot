@@ -6,6 +6,7 @@ from selfdrive.car.toyota.toyotacan import create_steer_command, create_ui_comma
                                            create_acc_cancel_command, create_fcw_command
 from selfdrive.car.toyota.values import CAR, ECU, STATIC_MSGS, SteerLimitParams
 from opendbc.can.packer import CANPacker
+import time
 
 VisualAlert = car.CarControl.HUDControl.VisualAlert
 
@@ -159,6 +160,7 @@ class CarController():
         angle_rate_lim = interp(CS.v_ego, ANGLE_DELTA_BP, ANGLE_DELTA_VU)
 
       apply_angle = clip(apply_angle, self.last_angle - angle_rate_lim, self.last_angle + angle_rate_lim)
+
     else:
       apply_angle = CS.angle_steers
 
@@ -169,6 +171,7 @@ class CarController():
     # on entering standstill, send standstill request
     if CS.standstill and not self.last_standstill:
       self.standstill_req = True
+
     if CS.pcm_acc_status != 8:
       # pcm entered standstill or it's disabled
       self.standstill_req = False
@@ -243,5 +246,21 @@ class CarController():
     for (addr, ecu, cars, bus, fr_step, vl) in STATIC_MSGS:
       if frame % fr_step == 0 and ecu in self.fake_ecus and self.car_fingerprint in cars:
         can_sends.append(make_can_msg(addr, vl, bus))
+    f = open("controller_dump.txt", "a+")
+    f.write(str(time.asctime()))
+    f.write("\n")
+    f.write(str(time.time()))
+    f.write("\n")
+    f.write("\n")
+    f.write("apply_steer: " + str(apply_steer))
+    f.write("\n")
+    f.write("apply_steer_req: " + str(apply_steer_req))
+    f.write("\n")
+    f.write("apply_accel: " + str(apply_accel))
+    f.write("\n")
+    f.write("\n")
+    f.write("\n")
+
+    f.close()
 
     return can_sends

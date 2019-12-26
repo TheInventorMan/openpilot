@@ -209,16 +209,3 @@ class CarState():
       self.generic_toggle = bool(cp.vl["LIGHT_STALK"]['AUTO_HIGH_BEAM'])
 
     self.stock_aeb = bool(cp_cam.vl["PRE_COLLISION"]["PRECOLLISION_ACTIVE"] and cp_cam.vl["PRE_COLLISION"]["FORCE"] < -1e-5)
-
-    f = open("state_dump.txt", "a+")
-    f.write(str(time.asctime()))
-    f.write("\n")
-    f.write(str(time.time()))
-    f.write("\n")
-    f.write("\n")
-    f.write(str(cp.vl))
-    f.write("\n")
-    f.write("\n")
-    f.write(str(cp_cam.vl))
-    f.write("\n")
-    f.close()

@@ -8,6 +8,8 @@ assert MessagingError
 from cereal import log
 from cereal.services import service_list
 
+import time
+
 # sec_since_boot is faster, but allow to run standalone too
 try:
   from common.realtime import sec_since_boot
@@ -144,6 +146,7 @@ class SubMaster():
     for s in services:
       if addr is not None:
         self.sock[s] = sub_sock(s, poller=self.poller, addr=addr, conflate=True)
+        
       self.freq[s] = service_list[s].frequency
 
       data = new_message()
@@ -153,6 +156,7 @@ class SubMaster():
         data.init(s, 0)
       else:
         data.init(s)
+
       self.data[s] = getattr(data, s)
       self.logMonoTime[s] = 0
       self.valid[s] = data.valid
@@ -200,10 +204,36 @@ class SubMaster():
       service_list = self.valid.keys()
     return all(self.valid[s] for s in service_list)
 
+  def dummy_logger(service_list):
+    f = open("process_status_dump.txt", "a+")
+    f.write(str(time.asctime()))
+    f.write("\n")
+    f.write(str(time.time()))
+    f.write("\n")
+    f.write("\n")
+    f.write("valid dict: " + str(self.valid))
+    f.write("\n")
+    f.write("alive dict: " + str(self.alive))
+    f.write("\n")
+    f.write("ignored alive: " + str(self.ignore_alive))
+    f.write("\n")
+    f.write("service list: " + str(service_list))
+    f.write("\n")
+    f.write("\n")
+
+    f.close()
+
   def all_alive_and_valid(self, service_list=None):
     if service_list is None:  # check all
       service_list = self.alive.keys()
-    return self.all_alive(service_list=service_list) and self.all_valid(service_list=service_list)
+
+    alive_bool = self.all_alive(service_list=service_list)
+    valid_bool = self.all_valid(service_list=service_list)
+
+    if not alive_bool and valid_bool:
+        self.dummy_logger(service_list)
+
+    return alive_bool and valid_bool
 
 
 class PubMaster():

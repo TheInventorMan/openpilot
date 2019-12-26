@@ -215,14 +215,14 @@ class CarInterface(CarInterfaceBase):
       ret.lateralTuning.pid.kf = 0.00007818594
 
     elif candidate == CAR.LEXUS_IS:
-      stop_and_go = False
-      ret.safetyParam = 77
-      ret.wheelbase = 2.79908
-      ret.steerRatio = 13.3
-      tire_stiffness_factor = 0.444
-      ret.mass = 3736.8 * CV.LB_TO_KG + STD_CARGO_KG
-      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.3], [0.05]]
-      ret.lateralTuning.pid.kf = 0.00006
+      stop_and_go = True
+      ret.safetyParam = 73
+      ret.wheelbase = 2.8190
+      ret.steerRatio = 16.0 # not optimized
+      tire_stiffness_factor = 0.444  # not optimized yet
+      ret.mass = 3682. * CV.LB_TO_KG + STD_CARGO_KG
+      ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.6], [0.1]]
+      ret.lateralTuning.pid.kf = 0.00007818594
 
     elif candidate == CAR.LEXUS_CTH:
       stop_and_go = True

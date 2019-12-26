@@ -246,21 +246,6 @@ class CarController():
     for (addr, ecu, cars, bus, fr_step, vl) in STATIC_MSGS:
       if frame % fr_step == 0 and ecu in self.fake_ecus and self.car_fingerprint in cars:
         can_sends.append(make_can_msg(addr, vl, bus))
-    f = open("controller_dump.txt", "a+")
-    f.write(str(time.asctime()))
-    f.write("\n")
-    f.write(str(time.time()))
-    f.write("\n")
-    f.write("\n")
-    f.write("apply_steer: " + str(apply_steer))
-    f.write("\n")
-    f.write("apply_steer_req: " + str(apply_steer_req))
-    f.write("\n")
-    f.write("apply_accel: " + str(apply_accel))
-    f.write("\n")
-    f.write("\n")
-    f.write("\n")
 
-    f.close()
 
     return can_sends

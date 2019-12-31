@@ -146,7 +146,7 @@ class SubMaster():
     for s in services:
       if addr is not None:
         self.sock[s] = sub_sock(s, poller=self.poller, addr=addr, conflate=True)
-        
+
       self.freq[s] = service_list[s].frequency
 
       data = new_message()
@@ -204,7 +204,7 @@ class SubMaster():
       service_list = self.valid.keys()
     return all(self.valid[s] for s in service_list)
 
-  def dummy_logger(service_list):
+  def dummy_logger(self, service_list):
     f = open("process_status_dump.txt", "a+")
     f.write(str(time.asctime()))
     f.write("\n")

@@ -458,6 +458,7 @@ def data_send(sm, pm, CS, CI, CP, VM, state, events, actuators, v_cruise_kph, rk
 def dummy_controlsd_logger(sm):
   if sm == None:
       return
+
   f = open("controlsd_dump.txt", "a+")
   f.write(str(time.asctime()))
   f.write("\n")
@@ -468,8 +469,8 @@ def dummy_controlsd_logger(sm):
   f.write("\n")
   f.write("alive dict: " + str(sm.alive))
   f.write("\n")
-  f.write("ignored alive: " + str(sm.ignore_alive))
-  f.write("\n")
+  #f.write("ignored alive: " + str(sm.ignore_alive))
+  #f.write("\n")
   f.write("service list: " + str(sm.alive.keys()))
   f.write("\n")
   f.write("\n")

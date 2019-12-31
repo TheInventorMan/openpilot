@@ -8,6 +8,7 @@ from selfdrive.car.toyota.values import ECU, ECU_FINGERPRINT, CAR, NO_STOP_TIMER
 from selfdrive.car import STD_CARGO_KG, scale_rot_inertia, scale_tire_stiffness, is_ecu_disconnected, gen_empty_fingerprint
 from selfdrive.swaglog import cloudlog
 from selfdrive.car.interfaces import CarInterfaceBase
+import time
 
 ButtonType = car.CarState.ButtonEvent.Type
 GearShifter = car.CarState.GearShifter
@@ -294,6 +295,18 @@ class CarInterface(CarInterfaceBase):
 
     return ret
 
+  def dummy_interface_logger(self, msg):
+    f = open("interface_dump.txt", "a+")
+    f.write(str(time.asctime()))
+    f.write("\n")
+    f.write(str(time.time()))
+    f.write("\n")
+    f.write("\n")
+    f.write(msg)
+    f.write("\n")
+
+    f.close()
+
   # returns a car.CarState
   def update(self, c, can_strings):
     # ******************* do can recv *******************
@@ -305,7 +318,13 @@ class CarInterface(CarInterfaceBase):
     # create message
     ret = car.CarState.new_message()
 
-    ret.canValid = self.cp.can_valid and self.cp_cam.can_valid
+    cpValid = self.cp.can_valid
+    cpCamValid = self.cp_cam.can_valid
+
+    if not (cpValid and cpCamValid):
+      self.dummy_interface_logger("cp: " + str(cpValid) + " cpCam: " + str(cpCamValid))
+
+    ret.canValid = cpValid and cpCamValid
 
     # speeds
     ret.vEgo = self.CS.v_ego

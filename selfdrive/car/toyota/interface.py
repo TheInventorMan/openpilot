@@ -296,6 +296,8 @@ class CarInterface(CarInterfaceBase):
     return ret
 
   def dummy_interface_logger(self, msg):
+    return
+    
     f = open("interface_dump.txt", "a+")
     f.write(str(time.asctime()))
     f.write("\n")

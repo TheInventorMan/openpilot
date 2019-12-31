@@ -79,3 +79,30 @@ valid: {'carState': True, 'controlsState': True, 'radarState': True, 'model': Tr
 alive: {'carState': False, 'controlsState': False, 'radarState': False, 'model': False, 'liveParameters': False}
 ignored: []
 
+Tue Dec 31 18:02:49 2019
+1577833369.8612034
+
+plannerd is waiting for CarParams
+Tue Dec 31 18:02:50 2019
+1577833370.9211128
+
+plannerd got CarParams: toyota
+Tue Dec 31 18:02:50 2019
+1577833370.9818594
+
+spawned SubMaster: ['carState', 'controlsState', 'radarState', 'model', 'liveParameters']
+Tue Dec 31 18:02:50 2019
+1577833370.983947
+
+spawned PubMaster: ['plan', 'liveLongitudinalMpc', 'pathPlan', 'liveMpc']
+Tue Dec 31 18:02:50 2019
+1577833370.9844697
+
+initialized liveParameters service, entering main loop...
+Tue Dec 31 18:02:50 2019
+1577833370.985064
+
+valid: {'carState': True, 'controlsState': True, 'radarState': True, 'model': True, 'liveParameters': True}
+alive: {'carState': False, 'controlsState': False, 'radarState': False, 'model': False, 'liveParameters': False}
+ignored: []
+

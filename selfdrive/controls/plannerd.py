@@ -12,7 +12,7 @@ import cereal.messaging as messaging
 import time
 
 def dummy_plannerd_logger(msg):
-  f = open("plannerd_log.txt", "a+")
+  f = open("plannerd_dump.txt", "a+")
   f.write(str(time.asctime()))
   f.write("\n")
   f.write(str(time.time()))
@@ -54,6 +54,11 @@ def plannerd_thread(sm=None, pm=None):
   sm['liveParameters'].stiffnessFactor = 1.0
 
   dummy_plannerd_logger("initialized liveParameters service, entering main loop...")
+
+  msg = "valid: " + str(sm.valid) + "\n" + \
+        "alive: " + str(sm.alive) + "\n" + \
+        "ignored: " + str(sm.ignore_alive) + "\n"
+  dummy_plannerd_logger(msg)
 
   while True:
     sm.update()

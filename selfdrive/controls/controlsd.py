@@ -455,6 +455,25 @@ def data_send(sm, pm, CS, CI, CP, VM, state, events, actuators, v_cruise_kph, rk
   return CC, events_bytes
 
 
+def dummy_controlsd_logger(sm):
+  f = open("controlsd_dump.txt", "a+")
+  f.write(str(time.asctime()))
+  f.write("\n")
+  f.write(str(time.time()))
+  f.write("\n")
+  f.write("\n")
+  f.write("valid dict: " + str(sm.valid))
+  f.write("\n")
+  f.write("alive dict: " + str(sm.alive))
+  f.write("\n")
+  f.write("ignored alive: " + str(sm.ignore_alive))
+  f.write("\n")
+  f.write("service list: " + str(sm.alive.keys()))
+  f.write("\n")
+  f.write("\n")
+
+  f.close()
+
 def controlsd_thread(sm=None, pm=None, can_sock=None):
   gc.disable()
 
@@ -559,6 +578,7 @@ def controlsd_thread(sm=None, pm=None, can_sock=None):
     # Create alerts
     if not sm.all_alive_and_valid():
       events.append(create_event('commIssue', [ET.NO_ENTRY, ET.SOFT_DISABLE]))
+      dummy_controlsd_logger(sm)
     if not sm['pathPlan'].mpcSolutionValid:
       events.append(create_event('plannerError', [ET.NO_ENTRY, ET.IMMEDIATE_DISABLE]))
     if not sm['pathPlan'].sensorValid:

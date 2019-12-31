@@ -1,0 +1,352 @@
+Tue Dec 31 11:37:26 2019
+1577810246.297964
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': False, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.3077848
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': False, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.3149865
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': False, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.3243217
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': False, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.3341503
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': False, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.3449044
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': False, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.3545508
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.364744
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.3743758
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.3846788
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': False, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.3947346
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.404849
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.416032
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.4247568
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.4342732
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.4444335
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.4539626
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.4649153
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.4746282
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.4853048
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.494569
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.5046496
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.515031
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.5247633
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.5341222
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.5441697
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.5546854
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.5648708
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.5746706
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.585151
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.5940115
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.6048136
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.6151292
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.624651
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.6344018
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.6447573
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.6543877
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.6709294
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.6773057
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.6843846
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.6943297
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.7047637
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.7152424
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+
+Tue Dec 31 11:37:26 2019
+1577810246.724803
+
+valid dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': True, 'pathPlan': True, 'model': True, 'gpsLocation': True}
+alive dict: {'thermal': True, 'health': True, 'liveCalibration': True, 'driverMonitoring': True, 'plan': False, 'pathPlan': False, 'model': False, 'gpsLocation': False}
+ignored alive: ['gpsLocation']
+service list: dict_keys(['thermal', 'health', 'liveCalibration', 'driverMonitoring', 'plan', 'pathPlan', 'model', 'gpsLocation'])
+

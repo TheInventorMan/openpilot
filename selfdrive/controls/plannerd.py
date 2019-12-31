@@ -42,9 +42,11 @@ def plannerd_thread(sm=None, pm=None):
 
   if sm is None:
     sm = messaging.SubMaster(['carState', 'controlsState', 'radarState', 'model', 'liveParameters'])
+    dummy_plannerd_logger("spawned SubMaster: ['carState', 'controlsState', 'radarState', 'model', 'liveParameters']")
 
   if pm is None:
     pm = messaging.PubMaster(['plan', 'liveLongitudinalMpc', 'pathPlan', 'liveMpc'])
+    dummy_plannerd_logger("spawned PubMaster: ['plan', 'liveLongitudinalMpc', 'pathPlan', 'liveMpc']")
 
   sm['liveParameters'].valid = True
   sm['liveParameters'].sensorValid = True

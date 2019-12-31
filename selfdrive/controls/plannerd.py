@@ -9,7 +9,19 @@ from selfdrive.controls.lib.planner import Planner
 from selfdrive.controls.lib.vehicle_model import VehicleModel
 from selfdrive.controls.lib.pathplanner import PathPlanner
 import cereal.messaging as messaging
+import time
 
+def dummy_plannerd_logger(msg):
+  f = open("plannerd_log.txt", "a+")
+  f.write(str(time.asctime()))
+  f.write("\n")
+  f.write(str(time.time()))
+  f.write("\n")
+  f.write("\n")
+  f.write(msg)
+  f.write("\n")
+
+  f.close()
 
 def plannerd_thread(sm=None, pm=None):
   gc.disable()
@@ -18,8 +30,10 @@ def plannerd_thread(sm=None, pm=None):
   set_realtime_priority(2)
 
   cloudlog.info("plannerd is waiting for CarParams")
+  dummy_plannerd_logger("plannerd is waiting for CarParams")
   CP = car.CarParams.from_bytes(Params().get("CarParams", block=True))
   cloudlog.info("plannerd got CarParams: %s", CP.carName)
+  dummy_plannerd_logger("plannerd got CarParams: " + str(CP.carName))
 
   PL = Planner(CP)
   PP = PathPlanner(CP)
@@ -36,6 +50,8 @@ def plannerd_thread(sm=None, pm=None):
   sm['liveParameters'].sensorValid = True
   sm['liveParameters'].steerRatio = CP.steerRatio
   sm['liveParameters'].stiffnessFactor = 1.0
+
+  dummy_plannerd_logger("initialized liveParameters service, entering main loop...")
 
   while True:
     sm.update()

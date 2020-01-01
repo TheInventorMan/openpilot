@@ -12,6 +12,8 @@ import cereal.messaging as messaging
 import time
 
 def dummy_plannerd_logger(msg):
+  return
+  
   f = open("plannerd_dump.txt", "a+")
   f.write(str(time.asctime()))
   f.write("\n")

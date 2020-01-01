@@ -457,6 +457,9 @@ def data_send(sm, pm, CS, CI, CP, VM, state, events, actuators, v_cruise_kph, rk
 
 
 def dummy_controlsd_logger(sm):
+
+  return
+  
   if sm == None:
     return
 

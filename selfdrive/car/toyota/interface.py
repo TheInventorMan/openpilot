@@ -398,7 +398,10 @@ class CarInterface(CarInterfaceBase):
     if ret.gearShifter == GearShifter.reverse and self.CP.openpilotLongitudinalControl:
       events.append(create_event('reverseGear', [ET.NO_ENTRY, ET.IMMEDIATE_DISABLE]))
     if self.CS.steer_error:
-      events.append(create_event('steerTempUnavailable', [ET.NO_ENTRY, ET.WARNING]))
+      if (self.CS.left_blinker_on or self.CS.right_blinker_on):
+        events.append(create_event('turnSignalOverride', [ET.NO_ENTRY, ET.WARNING]))
+      else:
+        events.append(create_event('steerTempUnavailable', [ET.NO_ENTRY, ET.WARNING]))
     if self.CS.low_speed_lockout and self.CP.openpilotLongitudinalControl:
       events.append(create_event('lowSpeedLockout', [ET.NO_ENTRY, ET.PERMANENT]))
     if ret.vEgo < self.CP.minEnableSpeed and self.CP.openpilotLongitudinalControl:

@@ -109,6 +109,13 @@ ALERTS = [
       Priority.LOW, VisualAlert.none, AudibleAlert.none, .2, .2, .2),
 
   Alert(
+      "turnSignalOverride",
+      "TAKE CONTROL",
+      "Manual Override Active",
+      AlertStatus.userPrompt, AlertSize.mid,
+      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .2, .2, .2),
+
+  Alert(
       "preDriverDistracted",
       "KEEP EYES ON ROAD: User Appears Distracted",
       "",

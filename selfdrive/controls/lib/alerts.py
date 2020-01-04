@@ -74,6 +74,13 @@ ALERTS = [
       Priority.MID, VisualAlert.none, AudibleAlert.chimeDisengage, .2, 0., 0.),
 
   Alert(
+      "turnIntentDisable",
+      "Turn Intention Detected: Reset TS To Engage",
+      "",
+      AlertStatus.normal, AlertSize.small,
+      Priority.MID, VisualAlert.none, AudibleAlert.none, .0, .1, .1, alert_rate=0.75),
+
+  Alert(
       "fcw",
       "BRAKE!",
       "Risk of Collision",

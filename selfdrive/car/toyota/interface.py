@@ -399,6 +399,8 @@ class CarInterface(CarInterfaceBase):
       events.append(create_event('reverseGear', [ET.NO_ENTRY, ET.IMMEDIATE_DISABLE]))
     if (self.CS.left_blinker_on or self.CS.right_blinker_on):
       events.append(create_event('turnSignalOverride', [ET.NO_ENTRY, ET.WARNING]))
+      if (ret.vEgo < 8):
+        events.append(create_event('turnIntentDisable', [ET.NO_ENTRY, ET.USER_DISABLE]))
     if self.CS.steer_error:
       if not (self.CS.left_blinker_on or self.CS.right_blinker_on):
         events.append(create_event('steerTempUnavailable', [ET.NO_ENTRY, ET.WARNING]))

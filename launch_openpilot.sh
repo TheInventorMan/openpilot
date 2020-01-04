@@ -1,5 +1,5 @@
 #!/usr/bin/bash
 
 export PASSIVE="0"
-git pull
+#git pull
 exec ./launch_chffrplus.sh

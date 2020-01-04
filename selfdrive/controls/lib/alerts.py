@@ -110,9 +110,9 @@ ALERTS = [
 
   Alert(
       "turnSignalOverride",
-      "TAKE CONTROL",
-      "Manual Override Active",
-      AlertStatus.userPrompt, AlertSize.mid,
+      "Steering Override: Reset TS To Resume",
+      "",
+      AlertStatus.normal, AlertSize.small,
       Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .2, .2, .2),
 
   Alert(

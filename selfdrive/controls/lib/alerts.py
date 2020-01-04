@@ -113,7 +113,7 @@ ALERTS = [
       "Steering Override: Reset TS To Resume",
       "",
       AlertStatus.normal, AlertSize.small,
-      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .2, .2, .2),
+      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.none, .0, .1, .1, alert_rate=0.75),
 
   Alert(
       "preDriverDistracted",

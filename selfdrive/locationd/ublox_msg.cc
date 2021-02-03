@@ -335,10 +335,44 @@ kj::Array<capnp::word> UbloxMsgParser::gen_mon_hw() {
   return capnp::messageToFlatArray(msg_builder);
 }
 
+kj::Array<capnp::word> UbloxMsgParser::gen_mon_hw2() {
+  mon_hw2_msg *msg = (mon_hw2_msg *)&msg_parse_buf[UBLOX_HEADER_SIZE];
+
+  MessageBuilder msg_builder;
+  auto hwStatus = msg_builder.initEvent().initUbloxGnss().initHwStatus2();
+  hwStatus.setOfsI(msg->ofsI);
+  hwStatus.setMagI(msg->magI);
+  hwStatus.setOfsQ(msg->ofsQ);
+  hwStatus.setMagQ(msg->magQ);
+
+  switch (msg->cfgSource) {
+    case 114:
+      hwStatus.setCfgSource(cereal::UbloxGnss::HwStatus2::ConfigSource::ROM);
+      break;
+    case 111:
+      hwStatus.setCfgSource(cereal::UbloxGnss::HwStatus2::ConfigSource::OTP);
+      break;
+    case 112:
+      hwStatus.setCfgSource(cereal::UbloxGnss::HwStatus2::ConfigSource::CONFIGPINS);
+      break;
+    case 102:
+      hwStatus.setCfgSource(cereal::UbloxGnss::HwStatus2::ConfigSource::FLASH);
+      break;
+    default:
+      hwStatus.setCfgSource(cereal::UbloxGnss::HwStatus2::ConfigSource::UNDEFINED);
+      break;
+  }
+
+  hwStatus.setLowLevCfg(msg->lowLevCfg);
+  hwStatus.setPostStatus(msg->postStatus);
+
+  return capnp::messageToFlatArray(msg_builder);
+}
+
 bool UbloxMsgParser::add_data(const uint8_t *incoming_data, uint32_t incoming_data_len, size_t &bytes_consumed) {
   int needed = needed_bytes();
   if(needed > 0) {
-    bytes_consumed = min((size_t)needed, incoming_data_len );
+    bytes_consumed = std::min((uint32_t)needed, incoming_data_len );
     // Add data to buffer
     memcpy(msg_parse_buf + bytes_in_parse_buf, incoming_data, bytes_consumed);
     bytes_in_parse_buf += bytes_consumed;

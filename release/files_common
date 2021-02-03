@@ -186,22 +186,22 @@ selfdrive/common/version.h
 
 selfdrive/common/framebuffer.h
 selfdrive/common/framebuffer.cc
-selfdrive/common/glutil.[c,h]
+selfdrive/common/glutil.cc
+selfdrive/common/glutil.h
 selfdrive/common/touch.[c,h]
 selfdrive/common/swaglog.h
 selfdrive/common/swaglog.cc
-selfdrive/common/util.[c,h]
-selfdrive/common/cqueue.[c,h]
+selfdrive/common/util.cc
+selfdrive/common/util.h
+selfdrive/common/queue.h
 selfdrive/common/clutil.cc
 selfdrive/common/clutil.h
 selfdrive/common/params.h
 selfdrive/common/params.cc
-selfdrive/common/mutex.h
 
 selfdrive/common/modeldata.h
 selfdrive/common/mat.h
 selfdrive/common/timing.h
-selfdrive/common/utilpp.h
 
 selfdrive/common/visionimg.cc
 selfdrive/common/visionimg.h
@@ -271,6 +271,7 @@ selfdrive/hardware/tici/__init__.py
 selfdrive/hardware/tici/hardware.py
 selfdrive/hardware/tici/pins.py
 selfdrive/hardware/tici/agnos.py
+selfdrive/hardware/tici/agnos.json
 selfdrive/hardware/pc/__init__.py
 selfdrive/hardware/pc/hardware.py
 
@@ -300,12 +301,13 @@ selfdrive/proclogd/SConscript
 selfdrive/proclogd/proclogd.cc
 
 selfdrive/loggerd/SConscript
-selfdrive/loggerd/encoder.cc
 selfdrive/loggerd/encoder.h
-selfdrive/loggerd/frame_logger.h
+selfdrive/loggerd/omx_encoder.cc
+selfdrive/loggerd/omx_encoder.h
 selfdrive/loggerd/logger.cc
 selfdrive/loggerd/logger.h
 selfdrive/loggerd/loggerd.cc
+selfdrive/loggerd/bootlog.cc
 selfdrive/loggerd/raw_logger.cc
 selfdrive/loggerd/raw_logger.h
 selfdrive/loggerd/include/msm_media_info.h
@@ -332,7 +334,6 @@ selfdrive/thermald/power_monitoring.py
 selfdrive/test/__init__.py
 selfdrive/test/helpers.py
 selfdrive/test/setup_device_ci.sh
-selfdrive/test/test_cpu_usage.py
 selfdrive/test/test_fingerprints.py
 selfdrive/test/test_manager.py
 
@@ -348,7 +349,7 @@ selfdrive/ui/android/spinner/spinner.c
 
 selfdrive/ui/android/text/Makefile
 selfdrive/ui/android/text/text
-selfdrive/ui/android/text/text.c
+selfdrive/ui/android/text/text.cc
 
 selfdrive/ui/qt/*.cc
 selfdrive/ui/qt/*.hpp
@@ -371,8 +372,11 @@ selfdrive/camerad/cameras/camera_frame_stream.cc
 selfdrive/camerad/cameras/camera_frame_stream.h
 selfdrive/camerad/cameras/camera_qcom.cc
 selfdrive/camerad/cameras/camera_qcom.h
+selfdrive/camerad/cameras/camera_qcom2.cc
+selfdrive/camerad/cameras/camera_qcom2.h
 selfdrive/camerad/cameras/debayer.cl
 selfdrive/camerad/cameras/sensor_i2c.h
+selfdrive/camerad/cameras/sensor2_i2c.h
 
 selfdrive/camerad/transforms/rgb_to_yuv.cc
 selfdrive/camerad/transforms/rgb_to_yuv.h
@@ -406,10 +410,14 @@ selfdrive/modeld/transforms/transform.h
 selfdrive/modeld/transforms/transform.cl
 
 selfdrive/modeld/thneed/thneed.*
+selfdrive/modeld/thneed/serialize.cc
+selfdrive/modeld/thneed/compile.cc
 selfdrive/modeld/thneed/include/*
 
 selfdrive/modeld/runners/snpemodel.cc
 selfdrive/modeld/runners/snpemodel.h
+selfdrive/modeld/runners/thneedmodel.cc
+selfdrive/modeld/runners/thneedmodel.h
 selfdrive/modeld/runners/runmodel.h
 selfdrive/modeld/runners/run.h
 
@@ -436,11 +444,16 @@ phonelibs/json11/json11.hpp
 
 phonelibs/qpoases/**
 
+phonelibs/qrcode/*.cc
+phonelibs/qrcode/*.hpp
+
 phonelibs/libyuv/include/**
 phonelibs/libyuv/lib/**
+phonelibs/libyuv/larch64/**
 
 phonelibs/snpe/include/**
 phonelibs/snpe/aarch64**
+phonelibs/snpe/larch64**
 phonelibs/snpe/dsp**
 
 phonelibs/android_frameworks_native/**

@@ -6,7 +6,6 @@
 #include <pthread.h>
 
 #include "common/util.h"
-#include "common/utilpp.h"
 #include "common/timing.h"
 #include "common/clutil.h"
 #include "common/swaglog.h"
@@ -32,7 +31,7 @@ void camera_open(CameraState *s, bool rear) {
 }
 
 void camera_close(CameraState *s) {
-  s->buf.stop();
+  // empty
 }
 
 void camera_init(VisionIpcServer * v, CameraState *s, int camera_id, unsigned int fps, cl_device_id device_id, cl_context ctx, VisionStreamType rgb_type, VisionStreamType yuv_type) {
@@ -40,8 +39,8 @@ void camera_init(VisionIpcServer * v, CameraState *s, int camera_id, unsigned in
   s->ci = cameras_supported[camera_id];
   assert(s->ci.frame_width != 0);
 
+  s->camera_num = camera_id;
   s->fps = fps;
-
   s->buf.init(device_id, ctx, s, v, FRAME_BUF_COUNT, rgb_type, yuv_type);
 }
 
@@ -227,7 +226,7 @@ void cameras_init(VisionIpcServer *v, MultiCameraState *s, cl_device_id device_i
               VISION_STREAM_RGB_BACK, VISION_STREAM_YUV_BACK);
   camera_init(v, &s->front, CAMERA_ID_LGC615, 10, device_id, ctx,
               VISION_STREAM_RGB_FRONT, VISION_STREAM_YUV_FRONT);
-  s->pm = new PubMaster({"frame", "frontFrame"});
+  s->pm = new PubMaster({"frame", "frontFrame", "thumbnail"});
 }
 
 void camera_autoexposure(CameraState *s, float grey_frac) {}
@@ -250,7 +249,7 @@ void camera_process_front(MultiCameraState *s, CameraState *c, int cnt) {
   MessageBuilder msg;
   auto framed = msg.initEvent().initFrontFrame();
   framed.setFrameType(cereal::FrameData::FrameType::FRONT);
-  fill_frame_data(framed, c->buf.cur_frame_data, cnt);
+  fill_frame_data(framed, c->buf.cur_frame_data);
   s->pm->send("frontFrame", msg);
 }
 
@@ -258,7 +257,7 @@ void camera_process_rear(MultiCameraState *s, CameraState *c, int cnt) {
   const CameraBuf *b = &c->buf;
   MessageBuilder msg;
   auto framed = msg.initEvent().initFrame();
-  fill_frame_data(framed, b->cur_frame_data, cnt);
+  fill_frame_data(framed, b->cur_frame_data);
   framed.setImage(kj::arrayPtr((const uint8_t *)b->cur_yuv_buf->addr, b->cur_yuv_buf->len));
   framed.setTransform(b->yuv_transform.v);
   s->pm->send("frame", msg);
@@ -272,8 +271,10 @@ void cameras_run(MultiCameraState *s) {
   std::thread t_rear = std::thread(rear_thread, &s->rear);
   set_thread_name("webcam_thread");
   front_thread(&s->front);
+
   t_rear.join();
-  cameras_close(s);
 
   for (auto &t : threads) t.join();
+
+  cameras_close(s);
 }

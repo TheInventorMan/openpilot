@@ -15,7 +15,9 @@ from common.basedir import BASEDIR
 from common.timeout import Timeout
 from common.params import Params
 import selfdrive.manager as manager
+from selfdrive.hardware import TICI, PC
 from selfdrive.loggerd.config import ROOT
+from selfdrive.test.helpers import with_processes
 from selfdrive.version import version as VERSION
 from tools.lib.logreader import LogReader
 
@@ -25,6 +27,12 @@ CEREAL_SERVICES = [f for f in log.Event.schema.union_fields if f in service_list
                    and service_list[f].should_log and "encode" not in f.lower()]
 
 class TestLoggerd(unittest.TestCase):
+
+  # TODO: all tests should work on PC
+  @classmethod
+  def setUpClass(cls):
+    if PC:
+      raise unittest.SkipTest
 
   def _get_latest_log_dir(self):
     log_dirs = sorted(Path(ROOT).iterdir(), key=lambda f: f.stat().st_mtime)
@@ -37,15 +45,23 @@ class TestLoggerd(unittest.TestCase):
         return path
     return None
 
+  def _get_log_fn(self, x):
+    for p in x.split(' '):
+      path = Path(p.strip())
+      if path.is_file():
+        return path
+    return None
+
   def _gen_bootlog(self):
     with Timeout(5):
-      out = subprocess.check_output(["./loggerd", "--bootlog"], cwd=os.path.join(BASEDIR, "selfdrive/loggerd"), encoding='utf-8')
+      out = subprocess.check_output("./bootlog", cwd=os.path.join(BASEDIR, "selfdrive/loggerd"), encoding='utf-8')
+
+    log_fn = self._get_log_fn(out)
 
     # check existence
-    d = self._get_log_dir(out) 
-    path = Path(os.path.join(d, "bootlog.bz2"))
-    assert path.is_file(), "failed to create bootlog file"
-    return path
+    assert log_fn is not None
+
+    return log_fn
 
   def _check_init_data(self, msgs):
     msg = msgs[0]
@@ -88,6 +104,31 @@ class TestLoggerd(unittest.TestCase):
     for _, k, v in fake_params:
       self.assertEqual(getattr(initData, k), v)
 
+  # TODO: this shouldn't need camerad
+  @with_processes(['camerad'])
+  def test_rotation(self):
+    os.environ["LOGGERD_TEST"] = "1"
+    Params().put("RecordFront", "1")
+    expected_files = {"rlog.bz2", "qlog.bz2", "qcamera.ts", "fcamera.hevc", "dcamera.hevc"}
+    if TICI:
+      expected_files.add("ecamera.hevc")
+
+    for _ in range(5):
+      num_segs = random.randint(1, 10)
+      length = random.randint(2, 5)
+      os.environ["LOGGERD_SEGMENT_LENGTH"] = str(length)
+
+      manager.start_managed_process("loggerd")
+      time.sleep((num_segs + 1) * length)
+      manager.kill_managed_process("loggerd")
+
+      route_path = str(self._get_latest_log_dir()).rsplit("--", 1)[0]
+      for n in range(num_segs):
+        p = Path(f"{route_path}--{n}")
+        logged = set([f.name for f in p.iterdir() if f.is_file()])
+        diff = logged ^ expected_files
+        self.assertEqual(len(diff), 0)
+
   def test_bootlog(self):
     # generate bootlog with fake launch log
     launch_log = ''.join([str(random.choice(string.printable)) for _ in range(100)])
@@ -98,11 +139,9 @@ class TestLoggerd(unittest.TestCase):
     lr = list(LogReader(str(bootlog_path)))
 
     # check length
-    assert len(lr) == 4 # boot + initData + 2x sentinel
-    
-    # check initData and sentinel
+    assert len(lr) == 2  # boot + initData
+
     self._check_init_data(lr)
-    self._check_sentinel(lr, True)
 
     # check msgs
     bootlog_msgs = [m for m in lr if m.which() == 'boot']

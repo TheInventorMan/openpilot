@@ -21,7 +21,6 @@
 #include "common/params.h"
 #include "common/swaglog.h"
 #include "common/util.h"
-#include "common/utilpp.h"
 #include "visionipc_server.h"
 
 ExitHandler do_exit;
@@ -34,11 +33,6 @@ void party(cl_device_id device_id, cl_context context) {
   cameras_open(&cameras);
 
   vipc_server.start_listener();
-
-  // priority for cameras
-  int err = set_realtime_priority(53);
-  LOG("setpriority returns %d", err);
-
 
   cameras_run(&cameras);
 }

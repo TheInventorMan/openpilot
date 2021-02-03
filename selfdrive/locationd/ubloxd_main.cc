@@ -13,7 +13,6 @@
 
 #include "messaging.hpp"
 #include "common/util.h"
-#include "common/utilpp.h"
 #include "common/params.h"
 #include "common/swaglog.h"
 #include "common/timing.h"
@@ -88,6 +87,13 @@ int ubloxd_main(poll_ubloxraw_msg_func poll_func, send_gps_event_func send_func)
           if(parser.msg_id() == MSG_MON_HW) {
             //LOGD("MSG_MON_HW");
             auto words = parser.gen_mon_hw();
+            if(words.size() > 0) {
+              auto bytes = words.asBytes();
+              pm.send("ubloxGnss", bytes.begin(), bytes.size());
+            }
+          } else if(parser.msg_id() == MSG_MON_HW2) {
+            //LOGD("MSG_MON_HW2");
+            auto words = parser.gen_mon_hw2();
             if(words.size() > 0) {
               auto bytes = words.asBytes();
               pm.send("ubloxGnss", bytes.begin(), bytes.size());

@@ -1,39 +1,41 @@
 #include <cmath>
-#include <iostream>
 #include <fstream>
+#include <iostream>
 #include <thread>
 
-#include <QWidget>
-#include <QMouseEvent>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QStackedLayout>
-#include <QLayout>
 #include <QDateTime>
+#include <QHBoxLayout>
+#include <QLayout>
+#include <QMouseEvent>
+#include <QStackedLayout>
+#include <QVBoxLayout>
+#include <QWidget>
 
 #include "common/params.h"
+#include "common/timing.h"
+#include "common/swaglog.h"
 
 #include "home.hpp"
 #include "paint.hpp"
 #include "qt_window.hpp"
 #include "widgets/drive_stats.hpp"
+#include "widgets/setup.hpp"
 
 #define BACKLIGHT_DT 0.25
 #define BACKLIGHT_TS 2.00
 
-
-OffroadHome::OffroadHome(QWidget *parent) : QWidget(parent) {
-  QVBoxLayout *main_layout = new QVBoxLayout();
+OffroadHome::OffroadHome(QWidget* parent) : QWidget(parent) {
+  QVBoxLayout* main_layout = new QVBoxLayout();
   main_layout->setContentsMargins(sbr_w + 50, 50, 50, 50);
 
   // top header
-  QHBoxLayout *header_layout = new QHBoxLayout();
+  QHBoxLayout* header_layout = new QHBoxLayout();
 
   date = new QLabel();
   date->setStyleSheet(R"(font-size: 55px;)");
   header_layout->addWidget(date, 0, Qt::AlignTop | Qt::AlignLeft);
 
-  QLabel *version = new QLabel(QString::fromStdString("openpilot v" + Params().get("Version")));
+  QLabel* version = new QLabel(QString::fromStdString("openpilot v" + Params().get("Version")));
   version->setStyleSheet(R"(font-size: 45px;)");
   header_layout->addWidget(version, 0, Qt::AlignTop | Qt::AlignRight);
 
@@ -47,9 +49,19 @@ OffroadHome::OffroadHome(QWidget *parent) : QWidget(parent) {
   main_layout->addSpacing(25);
   center_layout = new QStackedLayout();
 
-  DriveStats *drive = new DriveStats;
+  QHBoxLayout* statsAndSetup = new QHBoxLayout();
+
+  DriveStats* drive = new DriveStats;
   drive->setFixedSize(1000, 800);
-  center_layout->addWidget(drive);
+  statsAndSetup->addWidget(drive);
+
+  SetupWidget* setup = new SetupWidget;
+  statsAndSetup->addWidget(setup);
+
+  QWidget* statsAndSetupWidget = new QWidget();
+  statsAndSetupWidget->setLayout(statsAndSetup);
+
+  center_layout->addWidget(statsAndSetupWidget);
 
   alerts_widget = new OffroadAlert();
   QObject::connect(alerts_widget, SIGNAL(closeAlerts()), this, SLOT(closeAlerts()));
@@ -113,14 +125,13 @@ void OffroadHome::refresh() {
     font-weight: bold;
     background-color: #E22C2C;
   )");
-  if (alerts_widget->updateAvailable){
+  if (alerts_widget->updateAvailable) {
     style.replace("#E22C2C", "#364DEF");
   }
   alert_notification->setStyleSheet(style);
 }
 
-
-HomeWindow::HomeWindow(QWidget *parent) : QWidget(parent) {
+HomeWindow::HomeWindow(QWidget* parent) : QWidget(parent) {
   layout = new QGridLayout;
   layout->setMargin(0);
 
@@ -145,30 +156,29 @@ void HomeWindow::setVisibility(bool offroad) {
   home->setVisible(offroad);
 }
 
-void HomeWindow::mousePressEvent(QMouseEvent *e) {
-  UIState *ui_state = glWindow->ui_state;
+void HomeWindow::mousePressEvent(QMouseEvent* e) {
+  UIState* ui_state = &glWindow->ui_state;
 
   glWindow->wake();
 
   // Settings button click
-  if (!ui_state->scene.sidebar_collapsed && settings_btn.ptInRect(e->x(), e->y())) {
+  if (!ui_state->sidebar_collapsed && settings_btn.ptInRect(e->x(), e->y())) {
     emit openSettings();
   }
 
   // Vision click
-  if (ui_state->started && (e->x() >= ui_state->scene.viz_rect.x - bdr_s)) {
-    ui_state->scene.sidebar_collapsed = !ui_state->scene.sidebar_collapsed;
+  if (ui_state->started && (e->x() >= ui_state->viz_rect.x - bdr_s)) {
+    ui_state->sidebar_collapsed = !ui_state->sidebar_collapsed;
   }
 }
 
-
-static void handle_display_state(UIState *s, int dt, bool user_input) {
-  static int awake_timeout = 0;
-  awake_timeout = std::max(awake_timeout-dt, 0);
+static void handle_display_state(UIState* s, bool user_input) {
+  static int awake_timeout = 0; // Somehow this only gets called on program start
+  awake_timeout = std::max(awake_timeout - 1, 0);
 
   if (user_input || s->ignition || s->started) {
     s->awake = true;
-    awake_timeout = 30*UI_FREQ;
+    awake_timeout = 30 * UI_FREQ;
   } else if (awake_timeout == 0) {
     s->awake = false;
   }
@@ -182,8 +192,7 @@ static void set_backlight(int brightness) {
   }
 }
 
-
-GLWindow::GLWindow(QWidget *parent) : QOpenGLWidget(parent) {
+GLWindow::GLWindow(QWidget* parent) : QOpenGLWidget(parent) {
   timer = new QTimer(this);
   QObject::connect(timer, SIGNAL(timeout()), this, SLOT(timerUpdate()));
 
@@ -211,15 +220,13 @@ void GLWindow::initializeGL() {
   std::cout << "OpenGL renderer: " << glGetString(GL_RENDERER) << std::endl;
   std::cout << "OpenGL language version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 
-  ui_state = new UIState();
-  ui_state->sound = &sound;
-  ui_state->fb_w = vwp_w;
-  ui_state->fb_h = vwp_h;
-  ui_init(ui_state);
+  ui_state.sound = &sound;
+  ui_init(&ui_state);
 
   wake();
 
-  timer->start(0);
+  prev_draw_t = millis_since_boot();
+  timer->start(1000 / UI_FREQ);
   backlight_timer->start(BACKLIGHT_DT * 1000);
 }
 
@@ -227,11 +234,11 @@ void GLWindow::backlightUpdate() {
   // Update brightness
   float k = (BACKLIGHT_DT / BACKLIGHT_TS) / (1.0f + BACKLIGHT_DT / BACKLIGHT_TS);
 
-  float clipped_brightness = std::min(1023.0f, (ui_state->light_sensor*brightness_m) + brightness_b);
+  float clipped_brightness = std::min(1023.0f, (ui_state.light_sensor * brightness_m) + brightness_b);
   smooth_brightness = clipped_brightness * k + smooth_brightness * (1.0f - k);
   int brightness = smooth_brightness;
 
-  if (!ui_state->awake) {
+  if (!ui_state.awake) {
     brightness = 0;
   }
 
@@ -239,19 +246,23 @@ void GLWindow::backlightUpdate() {
 }
 
 void GLWindow::timerUpdate() {
-  if (ui_state->started != onroad) {
-    onroad = ui_state->started;
-    emit offroadTransition(!onroad);
-#ifdef QCOM2
-    timer->setInterval(onroad ? 0 : 1000);
-#endif
+  // Connecting to visionIPC requires opengl to be current
+  if (!ui_state.vipc_client->connected){
+    makeCurrent();
   }
 
-  // Fix awake timeout if running 1 Hz when offroad
-  int dt = timer->interval() == 0 ? 1 : 20;
-  handle_display_state(ui_state, dt, false);
+  if (ui_state.started != onroad) {
+    onroad = ui_state.started;
+    emit offroadTransition(!onroad);
 
-  ui_update(ui_state);
+    // Change timeout to 0 when onroad, this will call timerUpdate continously.
+    // This puts visionIPC in charge of update frequency, reducing video latency
+    timer->start(onroad ? 0 : 1000 / UI_FREQ);
+  }
+
+  handle_display_state(&ui_state, false);
+
+  ui_update(&ui_state);
   repaint();
 }
 
@@ -260,18 +271,25 @@ void GLWindow::resizeGL(int w, int h) {
 }
 
 void GLWindow::paintGL() {
-  ui_draw(ui_state);
-}
+  if(GLWindow::ui_state.awake){
+    ui_draw(&ui_state);
 
-void GLWindow::wake() {
-  // UI state might not be initialized yet
-  if (ui_state != nullptr) {
-    handle_display_state(ui_state, 1, true);
+    double cur_draw_t = millis_since_boot();
+    double dt = cur_draw_t - prev_draw_t;
+    if (dt > 66){
+      // warn on sub 15fps
+      LOGW("slow frame(%llu) time: %.2f", ui_state.sm->frame, dt);
+    }
+    prev_draw_t = cur_draw_t;
   }
 }
 
-
-FramebufferState* framebuffer_init(const char* name, int32_t layer, int alpha,
-                                   int *out_w, int *out_h) {
-  return (FramebufferState*)1; // not null
+void GLWindow::wake() {
+  handle_display_state(&ui_state, true);
 }
+
+FrameBuffer::FrameBuffer(const char *name, uint32_t layer, int alpha, int *out_w, int *out_h) {
+  *out_w = vwp_w;
+  *out_h = vwp_h;
+}
+FrameBuffer::~FrameBuffer() {}

@@ -17,6 +17,10 @@ AddOption('--asan',
           action='store_true',
           help='turn on ASAN')
 
+AddOption('--ubsan',
+          action='store_true',
+          help='turn on UBSan')
+
 AddOption('--clazy',
           action='store_true',
           help='build with clazy')
@@ -28,6 +32,12 @@ AddOption('--compile_db',
 AddOption('--mpc-generate',
           action='store_true',
           help='regenerates the mpc sources')
+
+AddOption('--external-sconscript',
+          action='store',
+          metavar='FILE',
+          dest='external_sconscript',
+          help='add an external SConscript to the build')
 
 real_arch = arch = subprocess.check_output(["uname", "-m"], encoding='utf8').rstrip()
 if platform.system() == "Darwin":
@@ -121,11 +131,14 @@ else:
   rpath = [os.path.join(os.getcwd(), x) for x in rpath]
 
 if GetOption('asan'):
-  ccflags_asan = ["-fsanitize=address", "-fno-omit-frame-pointer"]
-  ldflags_asan = ["-fsanitize=address"]
+  ccflags = ["-fsanitize=address", "-fno-omit-frame-pointer"]
+  ldflags = ["-fsanitize=address"]
+elif GetOption('ubsan'):
+  ccflags = ["-fsanitize=undefined"]
+  ldflags = ["-fsanitize=undefined"]
 else:
-  ccflags_asan = []
-  ldflags_asan = []
+  ccflags = []
+  ldflags = []
 
 # change pythonpath to this
 lenv["PYTHONPATH"] = Dir("#").path
@@ -144,7 +157,7 @@ env = Environment(
     "-Wno-inconsistent-missing-override",
     "-Wno-c99-designator",
     "-Wno-reorder-init-list",
-  ] + cflags + ccflags_asan,
+  ] + cflags + ccflags,
 
   CPPPATH=cpppath + [
     "#",
@@ -161,6 +174,7 @@ env = Environment(
     "#phonelibs/linux/include",
     "#phonelibs/snpe/include",
     "#phonelibs/nanovg",
+    "#phonelibs/qrcode",
     "#selfdrive/boardd",
     "#selfdrive/common",
     "#selfdrive/camerad",
@@ -177,7 +191,7 @@ env = Environment(
 
   CC='clang',
   CXX='clang++',
-  LINKFLAGS=ldflags_asan,
+  LINKFLAGS=ldflags,
 
   RPATH=rpath,
 
@@ -251,7 +265,7 @@ qt_env = None
 if arch in ["x86_64", "Darwin", "larch64"]:
   qt_env = env.Clone()
 
-  qt_modules = ["Widgets", "Gui", "Core", "DBus", "Multimedia", "Network"]
+  qt_modules = ["Widgets", "Gui", "Core", "DBus", "Multimedia", "Network", "Concurrent"]
 
   qt_libs = []
   if arch == "Darwin":
@@ -368,3 +382,7 @@ if arch != "Darwin":
 if real_arch == "x86_64":
   SConscript(['tools/nui/SConscript'])
   SConscript(['tools/lib/index_log/SConscript'])
+
+external_sconscript = GetOption('external_sconscript')
+if external_sconscript:
+  SConscript([external_sconscript])

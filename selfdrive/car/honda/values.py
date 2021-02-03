@@ -192,7 +192,7 @@ FW_VERSIONS = {
       b'57114-TVA-C060\x00\x00',
     ],
     (Ecu.eps, 0x18da30f1, None): [
-      b'39990-TVA,A150\x00\x00',
+      b'39990-TVA,A150\x00\x00', # modified firmware
       b'39990-TVA-A150\x00\x00',
       b'39990-TVA-A160\x00\x00',
       b'39990-TVA-X030\x00\x00',
@@ -390,7 +390,7 @@ FW_VERSIONS = {
       b'57114-TEA-Q220\x00\x00',
     ],
     (Ecu.eps, 0x18da30f1, None): [
-      b'39990-TBA,A030\x00\x00',
+      b'39990-TBA,A030\x00\x00', # modified firmware
       b'39990-TBA-A030\x00\x00',
       b'39990-TBG-A030\x00\x00',
       b'39990-TEG-A010\x00\x00',
@@ -453,6 +453,7 @@ FW_VERSIONS = {
       b'37805-5AN-CH20\x00\x00',
       b'37805-5AN-E630\x00\x00',
       b'37805-5AN-L840\x00\x00',
+      b'37805-5AN-L930\x00\x00',
       b'37805-5AN-L940\x00\x00',
       b'37805-5AN-LF20\x00\x00',
       b'37805-5AN-LH20\x00\x00',
@@ -560,16 +561,42 @@ FW_VERSIONS = {
     ],
   },
   CAR.CIVIC_BOSCH_DIESEL: {
-    (Ecu.programmedFuelInjection, 0x18da10f1, None): [b'37805-59N-G830\x00\x00'],
-    (Ecu.transmission, 0x18da1ef1, None): [b'28101-59Y-G620\x00\x00'],
-    (Ecu.vsa, 0x18da28f1, None): [b'57114-TGN-E320\x00\x00'],
-    (Ecu.eps, 0x18da30f1, None): [b'39990-TFK-G020\x00\x00'],
-    (Ecu.srs, 0x18da53f1, None): [b'77959-TFK-G210\x00\x00'],
-    (Ecu.combinationMeter, 0x18da60f1, None): [b'78109-TFK-G020\x00\x00'],
-    (Ecu.fwdRadar, 0x18dab0f1, None): [b'36802-TFK-G130\x00\x00'],
-    (Ecu.shiftByWire, 0x18da0bf1, None): [b'54008-TGN-E010\x00\x00'],
-    (Ecu.fwdCamera, 0x18dab5f1, None): [b'36161-TFK-G130\x00\x00'],
-    (Ecu.gateway, 0x18daeff1, None): [b'38897-TBA-A020\x00\x00'],
+    (Ecu.programmedFuelInjection, 0x18da10f1, None): [
+      b'37805-59N-G630\x00\x00',
+      b'37805-59N-G830\x00\x00',
+    ],
+    (Ecu.transmission, 0x18da1ef1, None): [
+      b'28101-59Y-G220\x00\x00',
+      b'28101-59Y-G620\x00\x00',
+    ],
+    (Ecu.vsa, 0x18da28f1, None): [
+      b'57114-TGN-E320\x00\x00',
+    ],
+    (Ecu.eps, 0x18da30f1, None): [
+      b'39990-TFK-G020\x00\x00',
+    ],
+    (Ecu.srs, 0x18da53f1, None): [
+      b'77959-TFK-G210\x00\x00',
+      b'77959-TGN-G220\x00\x00',
+    ],
+    (Ecu.combinationMeter, 0x18da60f1, None): [
+      b'78109-TFK-G020\x00\x00',
+      b'78109-TGN-G120\x00\x00',
+    ],
+    (Ecu.fwdRadar, 0x18dab0f1, None): [
+      b'36802-TFK-G130\x00\x00',
+      b'36802-TGN-G130\x00\x00',
+    ],
+    (Ecu.shiftByWire, 0x18da0bf1, None): [
+      b'54008-TGN-E010\x00\x00',
+    ],
+    (Ecu.fwdCamera, 0x18dab5f1, None): [
+      b'36161-TFK-G130\x00\x00',
+      b'36161-TGN-G130\x00\x00',
+    ],
+    (Ecu.gateway, 0x18daeff1, None): [
+      b'38897-TBA-A020\x00\x00',
+    ],
   },
   CAR.CRV: {
     (Ecu.vsa, 0x18da28f1, None): [b'57114-T1W-A230\x00\x00',],
@@ -617,7 +644,7 @@ FW_VERSIONS = {
       b'57114-TMC-Z050\x00\x00',
     ],
     (Ecu.eps, 0x18da30f1, None): [
-      b'39990-TLA,A040\x00\x00',
+      b'39990-TLA,A040\x00\x00', # modified firmware
       b'39990-TLA-A040\x00\x00',
       b'39990-TLA-A110\x00\x00',
       b'39990-TLA-A220\x00\x00',
@@ -902,6 +929,7 @@ FW_VERSIONS = {
     (Ecu.programmedFuelInjection, 0x18da10f1, None): [
       b'37805-5YF-A230\x00\x00',
       b'37805-5YF-A420\x00\x00',
+      b'37805-5YF-A430\x00\x00',
     ],
     (Ecu.vsa, 0x18da28f1, None): [
       b'57114-TJB-A040\x00\x00',

@@ -222,7 +222,7 @@ CONFIGS = [
     pub_sub={
       "can": ["controlsState", "carState", "carControl", "sendcan", "carEvents", "carParams"],
       "thermal": [], "health": [], "liveCalibration": [], "dMonitoringState": [], "plan": [], "pathPlan": [], "gpsLocation": [], "liveLocationKalman": [],
-      "model": [], "frontFrame": [],
+      "modelV2": [], "frontFrame": [], "frame": [], "ubloxRaw": [], "managerState": [],
     },
     ignore=["logMonoTime", "valid", "controlsState.startMonoTime", "controlsState.cumLagMs"],
     init_callback=fingerprint,
@@ -233,7 +233,7 @@ CONFIGS = [
     proc_name="radard",
     pub_sub={
       "can": ["radarState", "liveTracks"],
-      "liveParameters":  [], "controlsState":  [], "model":  [],
+      "liveParameters":  [], "controlsState":  [], "modelV2":  [],
     },
     ignore=["logMonoTime", "valid", "radarState.cumLagMs"],
     init_callback=get_car_params,
@@ -243,7 +243,7 @@ CONFIGS = [
   ProcessConfig(
     proc_name="plannerd",
     pub_sub={
-      "model": ["pathPlan"], "radarState": ["plan"],
+      "modelV2": ["pathPlan"], "radarState": ["plan"],
       "carState": [], "controlsState": [], "liveParameters": [],
     },
     ignore=["logMonoTime", "valid", "plan.processingDelay"],
@@ -266,7 +266,7 @@ CONFIGS = [
     proc_name="dmonitoringd",
     pub_sub={
       "driverState": ["dMonitoringState"],
-      "liveCalibration": [], "carState": [], "model": [], "controlsState": [],
+      "liveCalibration": [], "carState": [], "modelV2": [], "controlsState": [],
     },
     ignore=["logMonoTime", "valid"],
     init_callback=get_car_params,
@@ -342,7 +342,9 @@ def python_replay_process(cfg, lr):
   for msg in lr:
     if msg.which() == 'carParams':
       # TODO: get a stock VW route
-      if "Generic Volkswagen" not in msg.carParams.carFingerprint:
+      if "Generic Volkswagen" in msg.carParams.carFingerprint:
+        os.environ['FINGERPRINT'] = "VOLKSWAGEN GOLF"
+      else:
         os.environ['FINGERPRINT'] = msg.carParams.carFingerprint
       break
 

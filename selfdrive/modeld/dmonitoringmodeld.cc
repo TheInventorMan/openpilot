@@ -7,7 +7,7 @@
 #include "visionbuf.h"
 #include "visionipc_client.h"
 #include "common/swaglog.h"
-#include "common/utilpp.h"
+#include "common/util.h"
 
 #include "models/dmonitoring.h"
 
@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
   VisionIpcClient vipc_client = VisionIpcClient("camerad", VISION_STREAM_YUV_FRONT, true);
   while (!do_exit){
     if (!vipc_client.connect(false)){
-      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+      util::sleep_for(100);
       continue;
     }
     break;
@@ -52,8 +52,7 @@ int main(int argc, char **argv) {
       double t2 = millis_since_boot();
 
       // send dm packet
-      const float* raw_pred_ptr = send_raw_pred ? (const float *)dmonitoringmodel.output : nullptr;
-      dmonitoring_publish(pm, extra.frame_id, res, raw_pred_ptr, (t2-t1)/1000.0);
+      dmonitoring_publish(pm, extra.frame_id, res, (t2-t1)/1000.0, dmonitoringmodel.output);
 
       LOGD("dmonitoring process: %.2fms, from last %.2fms", t2-t1, t1-last);
       last = t1;

@@ -8,7 +8,7 @@ import numpy as np
 
 from opendbc import DBC_PATH
 
-from cereal import car
+from cereal import car, log
 from common.realtime import Ratekeeper
 from selfdrive.config import Conversions as CV
 import cereal.messaging as messaging
@@ -110,10 +110,11 @@ class Plant():
     self.rate = rate
 
     if not Plant.messaging_initialized:
+
+      Plant.pm = messaging.PubMaster(['frame', 'frontFrame', 'ubloxRaw'])
       Plant.logcan = messaging.pub_sock('can')
       Plant.sendcan = messaging.sub_sock('sendcan')
-      Plant.model = messaging.pub_sock('model')
-      Plant.front_frame = messaging.pub_sock('frontFrame')
+      Plant.model = messaging.pub_sock('modelV2')
       Plant.live_params = messaging.pub_sock('liveParameters')
       Plant.live_location_kalman = messaging.pub_sock('liveLocationKalman')
       Plant.health = messaging.pub_sock('health')
@@ -163,7 +164,6 @@ class Plant():
   def close(self):
     Plant.logcan.close()
     Plant.model.close()
-    Plant.front_frame.close()
     Plant.live_params.close()
     Plant.live_location_kalman.close()
 
@@ -392,14 +392,9 @@ class Plant():
     # ******** publish a fake model going straight and fake calibration ********
     # note that this is worst case for MPC, since model will delay long mpc by one time step
     if publish_model and self.frame % 5 == 0:
-      md = messaging.new_message('model')
+      md = messaging.new_message('modelV2')
       cal = messaging.new_message('liveCalibration')
-      fp = messaging.new_message('frontFrame')
-      md.model.frameId = 0
-      for x in [md.model.path, md.model.leftLane, md.model.rightLane]:
-        x.points = [0.0]*50
-        x.prob = 1.0
-        x.std = 1.0
+      md.modelV2.frameId = 0
 
       if self.lead_relevancy:
         d_rel = np.maximum(0., distance_lead - distance)
@@ -410,15 +405,11 @@ class Plant():
         v_rel = 0.
         prob = 0.0
 
-      md.model.lead.dist = float(d_rel)
-      md.model.lead.prob = prob
-      md.model.lead.relY = 0.0
-      md.model.lead.relYStd = 1.
-      md.model.lead.relVel = float(v_rel)
-      md.model.lead.relVelStd = 1.
-      md.model.lead.relA = 0.0
-      md.model.lead.relAStd = 10.
-      md.model.lead.std = 1.0
+      lead = log.ModelDataV2.LeadDataV2.new_message()
+      lead.xyva = [float(d_rel), 0.0, float(v_rel), 0.0]
+      lead.xyvaStd = [1.0, 1.0, 1.0, 1.0]
+      lead.prob = prob
+      md.modelV2.leads = [lead, lead]
 
       cal.liveCalibration.calStatus = 1
       cal.liveCalibration.calPerc = 100
@@ -426,7 +417,11 @@ class Plant():
       # fake values?
       Plant.model.send(md.to_bytes())
       Plant.cal.send(cal.to_bytes())
-      Plant.front_frame.send(fp.to_bytes())
+      for s in Plant.pm.sock.keys():
+        try:
+          Plant.pm.send(s, messaging.new_message(s))
+        except Exception:
+          Plant.pm.send(s, messaging.new_message(s, 1))
 
     Plant.logcan.send(can_list_to_can_capnp(can_msgs))
 
